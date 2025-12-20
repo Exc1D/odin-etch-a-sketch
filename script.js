@@ -1,11 +1,16 @@
-const container = document.getElementById("grid");
+function createGrid(size) {
+  console.log(`Creating ${size}x${size} grid...`);
+  const container = document.getElementById("grid");
 
-const gridSize = 4;
-const totalCells = gridSize * gridSize;
+  container.innerHTML = "";
 
-for (let i = 0; i < totalCells; i++) {
+  container.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+  console.log(`Grid columns set to: repeat(${size}, 50 px)`);
+
+  const totalCells = size * size;
+
+  for (let i = 0; i < totalCells; i++);
   const cell = document.createElement("div");
   cell.classList.add("cell");
-  cell.textContent = i + 1;
   container.appendChild(cell);
 }
