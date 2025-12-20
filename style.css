@@ -10,7 +10,6 @@ h1 {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 50px);
   gap: 2px;
   background-color: #999;
   width: fit-content;
