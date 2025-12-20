@@ -32,7 +32,7 @@ if (userInput === null) {
   console.log("Converted to a number:", gridSize);
   console.log("Type after conversion:", typeof gridSize);
 
-  if (isnan(gridSize)) {
+  if (isNaN(gridSize)) {
     console.log("🔴 Not a number!");
     alert("Hey! That's not a number! Please enter a valid number.");
   } else if (gridSize < 1 || gridSize > 100) {
