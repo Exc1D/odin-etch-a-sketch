@@ -1,7 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(4, 50px);
   gap: 2px;
+  background-color: #999;
+  width: fit-content;
 }
 
 .cell {
@@ -9,4 +21,5 @@
   height: 50px;
   border: 1px solid #ddd;
   background: white;
+  box-sizing: border-box;
 }
