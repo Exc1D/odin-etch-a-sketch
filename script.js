@@ -1,4 +1,5 @@
 const createNewGrid = document.getElementById("newGridBtn");
+const clearBtn = document.getElementById("clearBtn");
 const displayGridSize = document.getElementById("displayGridSize");
 const sizeInput = document.getElementById("sizeInput");
 const gridContainer = document.getElementById("grid");
@@ -98,6 +99,25 @@ function createGrid(size) {
   }
   console.log("Grid creation complete!");
 }
+
+function clearGrid() {
+  console.log("CLearing grid...");
+
+  const cells = document.querySelectorAll(".cell");
+
+  // Add fade-out to all cells
+  cells.forEach(function (cell, index) {
+    // Stagger the animation slightly for wave effect
+    setTimeout(function () {
+      cell.style.transition = "background-color 0.3s";
+      cell.style.backgroundColor = "white";
+    }, index * 2); // 2ms delay per cell creates wave
+  });
+
+  console.log(`Cleared ${cells.length} cells!`);
+}
+
+clearBtn.addEventListener("click", clearGrid);
 
 // Track drawing status for aditional visual feedback
 const setDrawingStatus = (drawing, statusSpan, gridContainer) => {
