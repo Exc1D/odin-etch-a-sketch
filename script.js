@@ -48,10 +48,15 @@ document.addEventListener("mouseup", () => {
   isMouseDown = false;
 });
 
+// Set initial color swatch
+colorSwatch.style.backgroundColor = currentColor;
+
 // Color picker to change cell background
 colorPicker.addEventListener("input", () => {
   currentColor = colorPicker.value;
-  currentColorDisplay.textContent = currentColor;
+  colorCode.textContent = currentColor;
+  colorSwatch.style.backgroundColor = currentColor;
+  newGridBtn.style.backgroundColor = currentColor;
 
   console.log("Color changed to:", currentColor);
 });
