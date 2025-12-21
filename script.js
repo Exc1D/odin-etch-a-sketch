@@ -5,6 +5,13 @@ const sizeInput = document.getElementById("sizeInput");
 let isMouseDown = false;
 console.log("Initial drawing state:", isMouseDown);
 
+document.addEventListener("mousedown", () => {
+  isMouseDown = true;
+});
+
+document.addEventListener("mouseup", () => {
+  isMouseDown = false;
+});
 function createGrid(size) {
   console.log(`Creating ${size}x${size} grid`);
   const container = document.getElementById("grid");
