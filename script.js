@@ -1,3 +1,5 @@
+const createNewGrid = document.getElementById("newGridBtn");
+
 function createGrid(size) {
   console.log(`Creating ${size}x${size} grid`);
   const container = document.getElementById("grid");
@@ -19,27 +21,31 @@ function createGrid(size) {
   console.log("Grid creation complete!");
 }
 
-const userInput = prompt("Enter grid size (1-100):");
+function setupNewGrid() {
+  const userInput = prompt("Enter grid size (1-100):");
 
-if (userInput === null) {
-  console.log("User cancelled");
-  alert("So you don't want to make a grid?");
-} else {
-  console.log("User entered:", userInput);
-  console.log("Type of input:", typeof userInput);
-
-  const gridSize = parseInt(userInput);
-  console.log("Converted to a number:", gridSize);
-  console.log("Type after conversion:", typeof gridSize);
-
-  if (isNaN(gridSize)) {
-    console.log("🔴 Not a number!");
-    alert("Hey! That's not a number! Please enter a valid number.");
-  } else if (gridSize < 1 || gridSize > 100) {
-    console.log("🔴 Out of range!");
-    alert("That's out of range! Just pick a number 1-100.");
+  if (userInput === null) {
+    console.log("User cancelled");
+    alert("So you don't want to make a grid?");
   } else {
-    console.log("🟢Valid input, creating grid...");
-    createGrid(gridSize);
+    console.log("User entered:", userInput);
+    console.log("Type of input:", typeof userInput);
+
+    const gridSize = parseInt(userInput);
+    console.log("Converted to a number:", gridSize);
+    console.log("Type after conversion:", typeof gridSize);
+
+    if (isNaN(gridSize)) {
+      console.log("🔴 Not a number!");
+      alert("Hey! That's not a number! Please enter a valid number.");
+    } else if (gridSize < 1 || gridSize > 100) {
+      console.log("🔴 Out of range!");
+      alert("That's out of range! Just pick a number 1-100.");
+    } else {
+      console.log("🟢Valid input, creating grid...");
+      createGrid(gridSize);
+    }
   }
 }
+
+createNewGrid.addEventListener("click", setupNewGrid);
