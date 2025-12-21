@@ -74,8 +74,3 @@ button:active {
 #drawingStatus.active {
   color: #4caf50;
 }
-
-/* Change cursor when drawing */
-.container {
-  cursor: crosshair; /* Changes cursor to crosshair */
-}
