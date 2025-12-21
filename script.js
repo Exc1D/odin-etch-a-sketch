@@ -45,12 +45,12 @@ document.addEventListener("mouseup", () => {
 });
 function createGrid(size) {
   console.log(`Creating ${size}x${size} grid`);
-  const container = document.getElementById("grid");
+  // const container = document.getElementById("grid");
 
-  container.innerHTML = "";
+  gridContainer.innerHTML = "";
   console.log("Old grid cleared");
 
-  container.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+  gridContainer.style.gridTemplateColumns = `repeat(${size}, 50px)`;
   console.log(`Grid colums set to: repeat(${size}, 50px)`);
 
   const totalCells = size * size;
@@ -71,7 +71,7 @@ function createGrid(size) {
     cell.addEventListener("mousedown", () => {
       cell.style.backgroundColor = "#4caf50";
     });
-    container.appendChild(cell);
+    gridContainer.appendChild(cell);
   }
   console.log("Grid creation complete!");
 }
