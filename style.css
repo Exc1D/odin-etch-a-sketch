@@ -13,6 +13,10 @@ h1 {
   gap: 2px;
   background-color: #999;
   width: fit-content;
+  cursor: crosshair;
+}
+.container.drawing {
+  cursor: pointer; /* Changes when actively drawing */
 }
 
 .cell {
@@ -23,13 +27,17 @@ h1 {
   box-sizing: border-box;
 }
 
+.input-field,
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
 button {
   background-color: white;
   color: #4caf50;
-  padding: 12px 24px;
-  font-size: 16px;
   border: 2px solid #4caf50;
-  border-radius: 4px;
   cursor: pointer;
   margin-bottom: 20px;
   transition: background-color 0.3s;
@@ -44,4 +52,30 @@ button:hover {
 button:active {
   background-color: #3d8b40;
   transform: scale(0.98);
+}
+
+#instructions {
+  background-color: #e3f2fd;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #2196f3;
+}
+
+#instructions p {
+  margin: 5px 0;
+}
+
+#drawingStatus {
+  font-weight: bold;
+  color: #666;
+}
+
+#drawingStatus.active {
+  color: #4caf50;
+}
+
+/* Change cursor when drawing */
+.container {
+  cursor: crosshair; /* Changes cursor to crosshair */
 }
