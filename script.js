@@ -12,6 +12,7 @@ const colorSwatch = document.getElementById("colorSwatch");
 function setupNewGrid() {
   const userInput = sizeInput.value;
 
+  // Input Validation and feedback using alert for extra attitude
   if (userInput === null || userInput === "") {
     console.log("User cancelled, proceed to default grid");
     alert("I'll create a grid anyway.");
@@ -27,9 +28,9 @@ function setupNewGrid() {
     if (isNaN(gridSize)) {
       console.log("🔴 Not a number!");
       alert("Hey! That's not a number! Please enter a valid number.");
-    } else if (gridSize < 1 || gridSize > 100) {
+    } else if (gridSize < 2 || gridSize > 64) {
       console.log("🔴 Out of range!");
-      alert("That's out of range! Just pick a number 1-100.");
+      alert("That's out of range! Just pick a number 2-64.");
     } else {
       console.log("🟢Valid input, creating grid...");
       createGrid(gridSize);
@@ -69,7 +70,6 @@ console.log("Color picker ready!");
 // Create Grid based on User Input
 function createGrid(size) {
   console.log(`Creating ${size}x${size} grid`);
-  // const container = document.getElementById("grid");
 
   gridContainer.innerHTML = "";
   console.log("Old grid cleared");
