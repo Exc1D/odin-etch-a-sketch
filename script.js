@@ -49,7 +49,10 @@ document.addEventListener("mouseup", () => {
 });
 
 // Set initial color swatch
+const DEFAULT_COLOR = "#000000";
+let currentColor = DEFAULT_COLOR;
 colorSwatch.style.backgroundColor = currentColor;
+newGridBtn.style.backgroundColor = currentColor;
 
 // Color picker to change cell background
 colorPicker.addEventListener("input", () => {
