@@ -10,6 +10,7 @@ const colorCode = document.getElementById("colorCode");
 const colorSwatch = document.getElementById("colorSwatch");
 const penBtn = document.getElementById("penBtn");
 const eraserBtn = document.getElementById("eraserBtn");
+const rainbowBtn = document.getElementById("rainbowBtn");
 
 // Inital state variables
 let isMouseDown = false;
@@ -77,16 +78,16 @@ function createGrid(size) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
 
-    // Color cells on drag
-    cell.addEventListener("mouseenter", () => {
-      if (isMouseDown) {
-        cell.style.backgroundColor = currentColor;
-      }
-    });
-    // Color cells on click
-    cell.addEventListener("mousedown", () => {
-      cell.style.backgroundColor = currentColor;
-    });
+    // // Color cells on drag
+    // cell.addEventListener("mouseenter", () => {
+    //   if (isMouseDown) {
+    //     cell.style.backgroundColor = currentColor;
+    //   }
+    // });
+    // // Color cells on click
+    // cell.addEventListener("mousedown", () => {
+    //   cell.style.backgroundColor = currentColor;
+    // });
     gridContainer.appendChild(cell);
   }
   console.log("Grid creation complete!");
@@ -114,6 +115,7 @@ function switchTool(tool) {
 
   penBtn.classList.remove("active");
   eraserBtn.classList.remove("active");
+  rainbowBtn.classList.remove("active");
 
   if (tool === "pen") {
     penBtn.classList.add("active");
@@ -121,14 +123,21 @@ function switchTool(tool) {
   } else if (tool === "eraser") {
     eraserBtn.classList.add("active");
     console.log("Eraser mode activated");
+  } else {
+    rainbowBtn.classList.add("active");
+    console.log("Rainbow mode activated");
   }
 }
 
+// Bind to tool-btn to run swtich with parameters
 penBtn.addEventListener("click", () => {
   switchTool("pen");
 });
 eraserBtn.addEventListener("click", () => {
   switchTool("eraser");
+});
+rainbowBtn.addEventListener("click", () => {
+  switchTool("rainbow");
 });
 
 function getRandomColor() {
@@ -137,10 +146,31 @@ function getRandomColor() {
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
 
-  const color = `rgb (${r}, ${g}, ${b})`;
-
-  return color;
+  return `rgb (${r}, ${g}, ${b})`;
 }
+
+function paintCell(target) {
+  if (typeof currentTool !== "unefined" && currentTool === "eraser") {
+    target.style.backgroundColor = "white";
+  } else if (typeof currentTool !== "undefined" && currentTool === "rainbow") {
+    target.style.backgroundColor = getRandomColor();
+  } else {
+    target.style.backgroundColor = currentColor;
+  }
+}
+
+gridContainer.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  if (e.target.classList.contains("cell")) {
+    paintCell(e.target);
+  }
+});
+gridContainer.addEventListener("mouseover", (e) => {
+  e.preventDefault();
+  if (isMouseDown && e.target.classList.contains("cell")) {
+    paintCell(e.target);
+  }
+});
 
 function clearGrid() {
   console.log("CLearing grid...");
