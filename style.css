@@ -54,19 +54,6 @@ button:active {
   transform: scale(0.98);
 }
 
-#newGridBtn {
-  color: white;
-  border: 2px solid white;
-  background-color: black;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
-}
-
-#newGridBtn:hover {
-  background-color: #444;
-  color: #ffeb3b;
-  border: 2px solid #ffeb3b;
-}
-
 #tools {
   display: flex;
   gap: 10px;
