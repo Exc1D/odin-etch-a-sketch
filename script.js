@@ -12,6 +12,7 @@ const rainbowBtn = document.getElementById("rainbowBtn");
 const sizeSlider = document.getElementById("sizeSlider");
 const totalSquares = document.getElementById("totalSquares");
 const shadingBtn = document.getElementById("shadingBtn");
+const gridLinesBtn = document.getElementById("gridLinesBtn");
 
 // STATE VARIABLES
 let isMouseDown = false;
@@ -58,8 +59,8 @@ function createGrid(size) {
 
   gridContainer.innerHTML = "";
 
-  const containerWidth = gridContainer.clientWidth || 600;
-  const containerHeight = gridContainer.clientHeight || 600;
+  const containerWidth = gridContainer.clientWidth || 380;
+  const containerHeight = gridContainer.clientHeight || 380;
 
   // Account for gaps in between cells
   const gapSize = 1;
@@ -67,7 +68,6 @@ function createGrid(size) {
   const availableWidth = containerWidth - totalGapWidth;
   const cellSize = Math.floor(availableWidth / size);
 
-  // 🔧 FIX: Added missing space and 'px'
   gridContainer.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`;
   gridContainer.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`;
 
@@ -89,11 +89,40 @@ function createGrid(size) {
     cell.style.width = `${cellSize}px`;
     cell.style.height = `${cellSize}px`;
 
+    // Toggle grid lines
+    if (!showGridLines) {
+      cell.style.border = "none";
+      cell.classList.add("no-border");
+    }
+
     fragment.appendChild(cell);
   }
 
   gridContainer.appendChild(fragment);
   console.log("✅ Grid creation complete!");
+}
+
+// ============================================
+// TOGGLE GRID LINES
+// ============================================
+
+let showGridLines = "true";
+
+function toggleGridLines() {
+  showGridLines = !showGridLines;
+
+  const cells = document.querySelectorAll(".cell");
+
+  cells.forEach((cell) => {
+    if (showGridLines) {
+      cell.style.border = "1px solid rgba(0, 0, 0, 0.05)";
+      cell.classList.remove("no-border");
+    } else {
+      cell.style.border = "none";
+      cell.classList.add("no-border");
+    }
+  });
+  gridLinesBtn.classList.toggle("active", showGridLines);
 }
 
 // ============================================
@@ -119,7 +148,7 @@ function applyShading(cell) {
 
   cell.dataset.darkness = darkness;
   const alpha = darkness / 100;
-  cell.style.backgroundColor = `rgb(0, 0, 0, ${alpha})`;
+  cell.style.backgroundColor = `rgba(0, 0, 0, ${alpha})`;
 }
 
 // ============================================
@@ -201,6 +230,9 @@ sizeSlider.addEventListener("input", () => {
   debouncedUpdate();
 });
 
+// Button listeners
+gridLinesBtn.addEventListener("click", toggleGridLines);
+
 // Tool buttons
 penBtn.addEventListener("click", () => switchTool("pen"));
 eraserBtn.addEventListener("click", () => switchTool("eraser"));
@@ -239,6 +271,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key.toLowerCase() === "r") switchTool("rainbow");
   if (e.key.toLowerCase() === "s") switchTool("shading");
   if (e.key.toLowerCase() === "e") switchTool("eraser");
+  if (e.key.toLowerCase() === "g") toggleGridLines();
   if (e.key.toLowerCase() === "c") clearBtn.click();
 });
 
