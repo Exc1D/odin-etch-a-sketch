@@ -1,7 +1,3 @@
-/* ============================================
-   PLAYFUL DOODLE THEME 🎨✨
-   ============================================ */
-
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap");
 
 body {
@@ -118,16 +114,6 @@ p {
   animation: pulse 1s infinite;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
 /* ============================================
    COLOR PICKER SECTION
    ============================================ */
@@ -220,17 +206,6 @@ p {
   margin-bottom: 15px;
   text-align: center;
   color: #2d3436;
-}
-
-#sizeValue,
-#sizeValue2 {
-  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 #totalSquares {
@@ -373,17 +348,13 @@ p {
   background-size: 200% 200%;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  animation: rainbow-slide 3s linear infinite;
 }
 
 #rainbowBtn.active {
-  animation: rainbow-slide 1s linear infinite, wiggle 0.5s ease,
-    rainbow-glow 1s ease-in-out infinite;
   box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
   transform: rotate(0deg) scale(1.15);
 }
 
-/* Shading button special styling */
 #shadingBtn.active {
   background: linear-gradient(135deg, #2d3436, #636e72);
   color: white;
@@ -392,6 +363,7 @@ p {
 
 #shadingBtn:hover {
   background: linear-gradient(135deg, #636e72, #2d3436);
+  color: white;
 }
 
 /* ============================================
