@@ -19,6 +19,7 @@ let isMouseDown = false;
 const DEFAULT_COLOR = "#000000";
 let currentColor = DEFAULT_COLOR;
 let currentTool = "pen";
+let showGridLines = true;
 
 // Set initial color swatch
 colorSwatch.style.backgroundColor = currentColor;
@@ -118,8 +119,6 @@ function createGrid(size) {
 // ============================================
 // TOGGLE GRID LINES
 // ============================================
-
-let showGridLines = true;
 
 function toggleGridLines() {
   showGridLines = !showGridLines;
@@ -314,6 +313,7 @@ document.addEventListener("keydown", (e) => {
 
 console.log("🎨 Starting Etch-a-Sketch...");
 switchTool("pen");
+gridLinesBtn.classList.add("active");
 createGrid(16);
 console.log("✅ Ready to draw!");
 console.log(
