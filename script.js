@@ -10,8 +10,6 @@ const penBtn = document.getElementById("penBtn");
 const eraserBtn = document.getElementById("eraserBtn");
 const rainbowBtn = document.getElementById("rainbowBtn");
 const sizeSlider = document.getElementById("sizeSlider");
-const sizeValue = document.getElementById("sizeValue");
-const sizeValue2 = document.getElementById("sizeValue2");
 const totalSquares = document.getElementById("totalSquares");
 
 // STATE VARIABLES
@@ -84,6 +82,9 @@ function createGrid(size) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
 
+    // Initialize darkness to 0
+    cell.dataset.darkness = "0";
+
     // Set dynamic cell size
     cell.style.width = `${cellSize}px`;
     cell.style.height = `${cellSize}px`;
@@ -109,6 +110,16 @@ function paintCell(target) {
   }
 }
 
+function applyShading(cell) {
+  let darkness = parseInt(cell.dataset.darkness) || 0;
+
+  darkness = Math.min(darkness + 10, 100);
+
+  cell.dataset.darkness = darkness;
+  const alpha = darkness / 100;
+  cell.style.backgroundColor = `rgb(0, 0, 0, ${alpha})`;
+}
+
 // ============================================
 // 4. TOOL SWITCHING
 // ============================================
@@ -127,7 +138,6 @@ function switchTool(tool) {
 // 5. GRID SIZE UPDATE
 // ============================================
 
-// 🔧 FIX: Added the missing function!
 function updateGridSize() {
   const size = parseInt(sizeSlider.value);
   console.log(`📏 Updating grid to ${size}×${size}`);
@@ -181,8 +191,6 @@ sizeSlider.addEventListener("input", () => {
   const size = parseInt(sizeSlider.value);
 
   // Update display immediately
-  sizeValue.textContent = size;
-  sizeValue2.textContent = size;
   totalSquares.textContent = `(${size * size} squares)`;
 
   // Debounced grid regeneration
