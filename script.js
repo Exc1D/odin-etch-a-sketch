@@ -59,8 +59,19 @@ function createGrid(size) {
 
   gridContainer.innerHTML = "";
 
+  if (showGridLines) {
+    gridContainer.style.backgroundColor = "#2d3436";
+    gridContainer.style.gap = "1px";
+    gridContainer.style.justifyContent = "normal";
+    gridContainer.style.alignContent = "normal";
+  } else {
+    gridContainer.style.backgroundColor = "white";
+    gridContainer.style.gap = "0";
+    gridContainer.style.justifyContent = "center";
+    gridContainer.style.alignContent = "center";
+  }
+
   const containerWidth = gridContainer.clientWidth || 380;
-  const containerHeight = gridContainer.clientHeight || 380;
 
   // Account for gaps in between cells
   const gapSize = 1;
@@ -113,8 +124,27 @@ let showGridLines = true;
 function toggleGridLines() {
   showGridLines = !showGridLines;
 
-  const cells = document.querySelectorAll(".cell");
+  if (showGridLines) {
+    // 1. Grid Lines ON: Dark background, 1px gap
+    gridContainer.style.backgroundColor = "#2d3436";
+    gridContainer.style.gap = "1px";
 
+    // Reset alignment to default so it fills the container normally
+    gridContainer.style.justifyContent = "normal";
+    gridContainer.style.alignContent = "normal";
+  } else {
+    // 2. Grid Lines OFF: White background, 0 gap
+    gridContainer.style.backgroundColor = "white";
+    gridContainer.style.gap = "0";
+
+    // Center the grid content!
+    // (Because removing the gap makes the grid slightly smaller than the container)
+    gridContainer.style.justifyContent = "center";
+    gridContainer.style.alignContent = "center";
+  }
+
+  // 3. Toggle borders on the individual cells
+  const cells = document.querySelectorAll(".cell");
   cells.forEach((cell) => {
     if (showGridLines) {
       cell.style.border = "1px solid rgba(0, 0, 0, 0.05)";
@@ -124,6 +154,7 @@ function toggleGridLines() {
       cell.classList.add("no-border");
     }
   });
+
   gridLinesBtn.classList.toggle("active", showGridLines);
 }
 
