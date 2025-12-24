@@ -10,56 +10,61 @@
   <body>
     <h1>Etch-a-sketch</h1>
     <p>Do you wanna build a Snowman? Draw it on the grid!</p>
+    <main>
+      <div class="card-container">
+        <div id="instructions">
+          <p><strong>Click and Drag</strong> to draw!</p>
+          <p>
+            Shortcuts: P (Pen) | R (Rainbow) | E (Eraser) | S (Shading) | G
+            (Grid) | C (Clear)
+          </p>
+          <p id="status">Status:<span id="drawingStatus"></span></p>
+        </div>
 
-    <div id="instructions">
-      <p><strong>Click and Drag</strong> to draw!</p>
-      <p>
-        Shortcuts: P (Pen) | R (Rainbow) | E (Eraser) | S (Shading) | G (Grid) |
-        C (Clear)
-      </p>
-      <p id="status">Status:<span id="drawingStatus"></span></p>
-    </div>
+        <!-- COLOR PICKER -->
+        <div id="controls">
+          <label for="colorPicker">
+            Drawing Color:
+            <input type="color" id="colorPicker" value="#000000" />
+          </label>
+          <span id="currentColor">
+            <span id="colorSwatch"></span>
+            <span id="colorCode">#000000</span>
+          </span>
+        </div>
 
-    <!-- COLOR PICKER -->
-    <div id="controls">
-      <label for="colorPicker">
-        Drawing Color:
-        <input type="color" id="colorPicker" value="#000000" />
-      </label>
-      <span id="currentColor">
-        <span id="colorSwatch"></span>
-        <span id="colorCode">#000000</span>
-      </span>
-    </div>
+        <!-- GRID SIZE SLIDER -->
+        <div id="gridSizeControl">
+          <label for="sizeSlider">
+            Grid Size:
+            <span id="sizeValue">16</span> × <span id="sizeValue2">16</span>
+            <span id="totalSquares">
+          </label>
+          <input type="range" id="sizeSlider" min="2" max="64" value="16" />
+          <div id="sizeLabels">
+            <span>2</span>
+            <span>16</span>
+            <span>32</span>
+            <span>48</span>
+            <span>64</span>
+          </div>
+        </div>
 
-    <!-- GRID SIZE SLIDER -->
-    <div id="gridSizeControl">
-      <label for="sizeSlider">
-        Grid Size:
-        <span id="totalSquares"></span>
-      </label>
-      <input type="range" id="sizeSlider" min="2" max="64" value="16" />
-      <div id="sizeLabels">
-        <span>2</span>
-        <span>16</span>
-        <span>32</span>
-        <span>48</span>
-        <span>64</span>
+        <!-- TOOL SECTION -->
+        <div id="tools">
+          <button id="penBtn" class="tool-btn active">Pen</button>
+          <button id="rainbowBtn" class="tool-btn">Rainbow</button>
+          <button id="shadingBtn" class="tool-btn">Shading</button>
+          <button id="eraserBtn" class="tool-btn">Eraser</button>
+          <button id="gridLinesBtn" class="tool-btn">Grid line</button>
+          <button id="clearBtn">Clear</button>
+        </div>
       </div>
-    </div>
 
-    <!-- TOOL SECTION -->
-    <div id="tools">
-      <button id="penBtn" class="tool-btn active">Pen</button>
-      <button id="rainbowBtn" class="tool-btn">Rainbow</button>
-      <button id="shadingBtn" class="tool-btn">Shading</button>
-      <button id="eraserBtn" class="tool-btn">Eraser</button>
-      <button id="gridLinesBtn" class="tool-btn">Grid line</button>
-      <button id="clearBtn">Clear</button>
-    </div>
-
-    <div id="displayGridSize"></div>
-    <div class="container" id="grid"></div>
+      <div class="sub-container">
+        <div class="container" id="grid"></div>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
   <footer>
