@@ -1,6 +1,5 @@
 // DOM ELEMENTS
 const clearBtn = document.getElementById("clearBtn");
-const displayGridSize = document.getElementById("displayGridSize");
 const gridContainer = document.getElementById("grid");
 const statusSpan = document.getElementById("drawingStatus");
 const colorPicker = document.getElementById("colorPicker");
@@ -11,6 +10,8 @@ const eraserBtn = document.getElementById("eraserBtn");
 const rainbowBtn = document.getElementById("rainbowBtn");
 const sizeSlider = document.getElementById("sizeSlider");
 const totalSquares = document.getElementById("totalSquares");
+const sizeValue = document.getElementById("sizeValue");
+const sizeValue2 = document.getElementById("sizeValue2");
 const shadingBtn = document.getElementById("shadingBtn");
 const gridLinesBtn = document.getElementById("gridLinesBtn");
 
@@ -84,7 +85,6 @@ function createGrid(size) {
 
   const totalCells = size * size;
   console.log(`Total cells to create: ${totalCells}`);
-  displayGridSize.textContent = `Grid: ${size}×${size} (${totalCells} squares)`;
 
   // Document fragment for performance
   const fragment = document.createDocumentFragment();
@@ -256,8 +256,9 @@ sizeSlider.addEventListener("input", () => {
   const size = parseInt(sizeSlider.value);
 
   // Update display immediately
+  sizeValue.textContent = size;
+  sizeValue2.textContent = size;
   totalSquares.textContent = `(${size * size} squares)`;
-
   // Debounced grid regeneration
   debouncedUpdate();
 });
