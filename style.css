@@ -3,22 +3,40 @@
 body {
   font-family: "Patrick Hand", "Indie Flower", cursive;
   padding: 20px;
-  background: linear-gradient(
-    135deg,
-    #ffeaa7 0%,
-    #fdcb6e 25%,
-    #fab1a0 50%,
-    #ff7675 75%,
-    #fd79a8 100%
-  );
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+  background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
   min-height: 100vh;
+  margin: 0;
+}
+
+/* ============================================
+   MAIN LAYOUT - DESKTOP
+   ============================================ */
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-container {
+  flex: 0 1 400px; /* 🆕 Fixed width, won't grow beyond 400px */
+  max-width: 400px;
+}
+
+.sub-container {
+  flex: 1 1 600px; /* 🆕 Can grow, but prefers 600px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   color: #2d3436;
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
   text-align: center;
   text-shadow: 3px 3px 0px #fff, 4px 4px 0px rgba(0, 0, 0, 0.1);
@@ -43,14 +61,15 @@ p {
   gap: 1px;
   background-color: #2d3436;
 
+  /* 🆕 Responsive sizing */
   width: 600px;
   height: 600px;
 
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="8" fill="rgba(0,0,0,0.5)"/><circle cx="12" cy="12" r="4" fill="white"/></svg>')
       12 12,
     crosshair;
-  margin: 20px auto;
-  padding: 0; /* Remove padding for cleaner look */
+  margin: 0 auto;
+  padding: 0;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 0 8px #fff,
     inset 0 0 0 10px #2d3436;
@@ -90,36 +109,45 @@ p {
 
 #instructions {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 0 auto 20px;
-  max-width: 600px;
-  border: 4px dashed #2d3436;
-  box-shadow: 5px 5px 0px #fdcb6e, 10px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* 🆕 Smaller padding */
+  border-radius: 15px;
+  margin: 0 auto 15px; /* 🆕 Smaller margin */
+  border: 3px dashed #2d3436; /* 🆕 Thinner border */
+  box-shadow: 4px 4px 0px #fdcb6e, 8px 8px 0px rgba(0, 0, 0, 0.1);
   transform: rotate(1deg);
 }
 
 #instructions p {
-  margin: 10px 0;
-  font-size: 18px;
+  margin: 8px 0; /* 🆕 Smaller margin */
+  font-size: 16px; /* 🆕 Smaller text */
   text-align: left;
 }
 
 #instructions strong {
   color: #e74c3c;
-  font-size: 20px;
+  font-size: 18px; /* 🆕 Smaller */
 }
 
 #drawingStatus {
   font-weight: bold;
   color: #95a5a6;
-  font-size: 22px;
-  margin-left: 10px;
+  font-size: 18px; /* 🆕 Smaller */
+  margin-left: 8px;
 }
 
 #drawingStatus.active {
   color: #27ae60;
   animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 /* ============================================
@@ -128,36 +156,35 @@ p {
 
 #controls {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 0 auto 20px;
-  max-width: 600px;
-  border: 4px solid #fdcb6e;
-  box-shadow: 5px 5px 0px #fab1a0, 10px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* 🆕 Smaller */
+  border-radius: 15px;
+  margin: 0 auto 15px; /* 🆕 Smaller */
+  border: 3px solid #fdcb6e; /* 🆕 Thinner */
+  box-shadow: 4px 4px 0px #fab1a0, 8px 8px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px; /* 🆕 Smaller gap */
   transform: rotate(-1deg);
 }
 
 #controls label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px; /* 🆕 Smaller */
   color: #2d3436;
 }
 
 #colorPicker {
-  width: 70px;
-  height: 70px;
-  border: 4px solid #2d3436;
+  width: 50px; /* 🆕 Smaller */
+  height: 50px;
+  border: 3px solid #2d3436;
   border-radius: 50%;
   cursor: pointer;
   transition: transform 0.2s;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 #colorPicker:hover {
@@ -166,22 +193,22 @@ p {
 
 #currentColor {
   background: #f8f9fa;
-  padding: 10px 20px;
-  border-radius: 15px;
+  padding: 8px 15px; /* 🆕 Smaller */
+  border-radius: 12px;
   font-family: "Courier New", monospace;
   font-weight: bold;
-  border: 3px solid #2d3436;
+  border: 2px solid #2d3436; /* 🆕 Thinner */
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 #colorSwatch {
-  width: 40px;
-  height: 40px;
+  width: 30px; /* 🆕 Smaller */
+  height: 30px;
   border-radius: 50%;
-  border: 3px solid #2d3436;
+  border: 2px solid #2d3436;
   transition: transform 0.2s;
   background-color: #000000;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
@@ -191,6 +218,10 @@ p {
   transform: rotate(360deg);
 }
 
+#colorCode {
+  font-size: 14px; /* 🆕 Smaller */
+}
+
 /* ============================================
    GRID SIZE SLIDER
    ============================================ */
@@ -198,35 +229,45 @@ p {
 #gridSizeControl {
   background: white;
   color: #2d3436;
-  padding: 25px;
-  border-radius: 20px;
-  margin: 0 auto 20px;
-  max-width: 600px;
-  border: 4px solid #a29bfe;
-  box-shadow: 5px 5px 0px #dfe6e9, 10px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* 🆕 Smaller */
+  border-radius: 15px;
+  margin: 0 auto 15px; /* 🆕 Smaller */
+  border: 3px solid #a29bfe; /* 🆕 Thinner */
+  box-shadow: 4px 4px 0px #dfe6e9, 8px 8px 0px rgba(0, 0, 0, 0.1);
   transform: rotate(1deg);
 }
 
 #gridSizeControl label {
   display: block;
-  font-size: 22px;
+  font-size: 18px; /* 🆕 Smaller */
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   text-align: center;
   color: #2d3436;
 }
 
+#sizeValue,
+#sizeValue2 {
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+  color: white;
+  padding: 4px 10px; /* 🆕 Smaller */
+  border-radius: 8px;
+  font-size: 18px; /* 🆕 Smaller */
+  font-weight: bold;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
 #totalSquares {
-  font-size: 16px;
+  font-size: 14px; /* 🆕 Smaller */
   opacity: 0.8;
-  margin-left: 10px;
+  margin-left: 8px;
   color: #636e72;
 }
 
 #sizeSlider {
   width: 100%;
-  height: 12px;
-  border-radius: 10px;
+  height: 10px; /* 🆕 Slightly smaller */
+  border-radius: 8px;
   background: #dfe6e9;
   outline: none;
   cursor: pointer;
@@ -239,8 +280,8 @@ p {
 #sizeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 32px;
-  height: 32px;
+  width: 28px; /* 🆕 Smaller */
+  height: 28px;
   border-radius: 50%;
   background: linear-gradient(135deg, #fd79a8, #e84393);
   cursor: pointer;
@@ -250,12 +291,12 @@ p {
 }
 
 #sizeSlider::-webkit-slider-thumb:hover {
-  transform: scale(1.3) rotate(180deg);
+  transform: scale(1.2) rotate(180deg);
 }
 
 #sizeSlider::-moz-range-thumb {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: linear-gradient(135deg, #fd79a8, #e84393);
   cursor: pointer;
@@ -266,8 +307,8 @@ p {
 #sizeLabels {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 8px;
+  font-size: 12px;
   font-weight: bold;
   color: #636e72;
 }
@@ -278,9 +319,8 @@ p {
 
 #tools {
   display: flex;
-  gap: 15px;
-  margin: 0 auto 20px;
-  max-width: 600px;
+  gap: 10px; /* 🆕 Smaller gap */
+  margin: 0 auto 15px; /* 🆕 Smaller margin */
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -288,21 +328,21 @@ p {
 .tool-btn {
   background: white;
   color: #2d3436;
-  padding: 15px 30px;
-  font-size: 20px;
-  border: 4px solid #2d3436;
-  border-radius: 15px;
+  padding: 12px 20px; /* 🆕 Smaller padding */
+  font-size: 16px; /* 🆕 Smaller text */
+  border: 3px solid #2d3436; /* 🆕 Thinner border */
+  border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
   font-family: "Patrick Hand", cursive;
   transition: all 0.2s;
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
   transform: rotate(-2deg);
 }
 
 .tool-btn:hover {
-  transform: rotate(0deg) translateY(-5px);
-  box-shadow: 7px 7px 0px rgba(0, 0, 0, 0.3);
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
 }
 
 .tool-btn:active {
@@ -313,32 +353,32 @@ p {
 .tool-btn.active {
   background: linear-gradient(135deg, #55efc4, #00b894);
   color: white;
-  transform: rotate(0deg) scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 184, 148, 0.5);
   animation: wiggle 0.5s ease;
 }
 
 @keyframes wiggle {
   0%,
   100% {
-    transform: rotate(0deg) scale(1.1);
+    transform: rotate(0deg) scale(1.05);
   }
   25% {
-    transform: rotate(5deg) scale(1.1);
+    transform: rotate(3deg) scale(1.05);
   }
   75% {
-    transform: rotate(-5deg) scale(1.1);
+    transform: rotate(-3deg) scale(1.05);
   }
 }
 
 .tool-btn.active::before {
   content: "✓ ";
-  font-size: 24px;
+  font-size: 18px;
 }
 
 #eraserBtn.active {
   background: linear-gradient(135deg, #fab1a0, #ff7675);
-  box-shadow: 0 0 20px rgba(255, 118, 117, 0.5);
+  box-shadow: 0 0 15px rgba(255, 118, 117, 0.5);
 }
 
 #rainbowBtn {
@@ -359,14 +399,14 @@ p {
 }
 
 #rainbowBtn.active {
-  box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
-  transform: rotate(0deg) scale(1.15);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+  transform: rotate(0deg) scale(1.08);
 }
 
 #shadingBtn.active {
   background: linear-gradient(135deg, #2d3436, #636e72);
   color: white;
-  box-shadow: 0 0 20px rgba(45, 52, 54, 0.6);
+  box-shadow: 0 0 15px rgba(45, 52, 54, 0.6);
 }
 
 #shadingBtn:hover {
@@ -383,106 +423,98 @@ p {
   background: linear-gradient(135deg, #74b9ff, #0984e3);
   color: white;
   transform: rotate(0deg) scale(1.05);
-  box-shadow: 0 0 20px rgba(9, 132, 227, 0.5);
-}
-
-#gridLinesBtn.active::before {
-  content: "✓ ";
-  font-size: 20px;
+  box-shadow: 0 0 15px rgba(9, 132, 227, 0.5);
 }
 
 /* ============================================
-   BUTTONS
+   CLEAR BUTTON
    ============================================ */
-
-#buttons {
-  display: flex;
-  gap: 15px;
-  margin: 0 auto 20px;
-  max-width: 600px;
-  justify-content: center;
-}
-
-button {
-  background: white;
-  color: #2d3436;
-  padding: 15px 30px;
-  font-size: 20px;
-  border: 4px solid #2d3436;
-  border-radius: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  font-family: "Patrick Hand", cursive;
-  transition: all 0.2s;
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
-  transform: rotate(2deg);
-}
-
-button:hover {
-  transform: rotate(0deg) translateY(-5px);
-  background: #fdcb6e;
-  box-shadow: 7px 7px 0px rgba(0, 0, 0, 0.3);
-}
-
-button:active {
-  transform: rotate(0deg) translateY(2px);
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
-}
 
 #clearBtn {
   background: linear-gradient(135deg, #ff7675, #d63031);
   color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 3px solid #2d3436;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: "Patrick Hand", cursive;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  transform: rotate(2deg);
 }
 
 #clearBtn:hover {
   background: linear-gradient(135deg, #ff5252, #c0392b);
-  transform: rotate(0deg) translateY(-5px) scale(1.05);
+  transform: rotate(0deg) translateY(-3px) scale(1.05);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+#clearBtn:active {
+  transform: rotate(0deg) translateY(2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* ============================================
-   DISPLAY GRID SIZE
+   FOOTER
    ============================================ */
 
-#displayGridSize {
+footer {
   text-align: center;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 20px;
+  margin-top: 40px;
   color: #2d3436;
-  margin-bottom: 15px;
-  padding: 10px;
-  background: white;
-  border-radius: 15px;
-  max-width: 300px;
-  margin: 0 auto 20px;
-  border: 3px dashed #fdcb6e;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
-  transform: rotate(-1deg);
+  font-size: 16px;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+footer a {
+  color: #0984e3;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #74b9ff;
+  text-decoration: underline;
+}
 
 /* ============================================
    MOBILE RESPONSIVE DESIGN 📱
    ============================================ */
 
+@media (max-width: 1200px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .sub-container {
+    width: 100%;
+  }
+
+  .container {
+    width: 90vw;
+    height: 90vw;
+    max-width: 600px;
+    max-height: 600px;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Smaller padding on mobile */
   body {
     padding: 10px;
   }
 
-  .container {
-    width: 380px;
-    height: 380px;
-  }
-
-  /* Smaller title */
   h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: 36px;
   }
 
   p {
@@ -490,102 +522,48 @@ button:active {
     margin-bottom: 15px;
   }
 
-  /* Stack controls vertically */
+  .container {
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
   #controls {
     flex-direction: column;
-    padding: 15px;
-    gap: 10px;
+    padding: 12px;
   }
 
-  #controls label {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  /* Smaller color picker */
-  #colorPicker {
-    width: 60px;
-    height: 60px;
-  }
-
-  /* Grid size control adjustments */
-  #gridSizeControl {
-    padding: 15px;
-  }
-
-  #gridSizeControl label {
-    font-size: 18px;
-  }
-
-  #totalSquares {
-    font-size: 12px;
-    display: block;
-    margin-left: 0;
-    margin-top: 5px;
-  }
-
-  /* Tool buttons - smaller and wrap */
   #tools {
-    flex-wrap: wrap;
     gap: 8px;
-    max-width: 100%;
   }
 
   .tool-btn {
     padding: 10px 15px;
-    font-size: 16px;
-    flex: 1 1 calc(50% - 8px); /* Two buttons per row */
+    font-size: 14px;
+    flex: 1 1 calc(50% - 8px);
     min-width: 120px;
-  }
-
-  /* Regular buttons */
-  button {
-    padding: 12px 20px;
-    font-size: 16px;
-  }
-
-  /* Instructions box */
-  #instructions {
-    padding: 15px;
-    max-width: 100%;
   }
 
   #instructions p {
     font-size: 14px;
   }
-
-  /* Display grid size */
-  #displayGridSize {
-    font-size: 14px;
-    max-width: 90%;
-  }
 }
 
-/* Extra small devices (phones in portrait) */
 @media (max-width: 480px) {
   h1 {
     font-size: 28px;
   }
 
+  .container {
+    width: 95vw;
+    height: 95vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
   .tool-btn {
-    font-size: 14px;
+    font-size: 13px;
     padding: 8px 12px;
-  }
-}
-
-/* Landscape orientation on mobile */
-@media (max-width: 900px) and (orientation: landscape) {
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #tools,
-  #buttons,
-  #controls,
-  #gridSizeControl,
-  #instructions {
-    max-width: 90%;
   }
 }
