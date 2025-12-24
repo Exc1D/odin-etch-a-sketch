@@ -485,10 +485,11 @@ footer a:hover {
    MOBILE RESPONSIVE DESIGN 📱
    ============================================ */
 
-@media (max-width: 1200px) {
+@media (max-width: 1O00px) {
   main {
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem
   }
 
   .card-container {
