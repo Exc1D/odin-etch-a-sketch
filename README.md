@@ -27,6 +27,7 @@ There is also the mvp or the most basic version that uses alert prompt for user 
 
 ## 📸 Screenshots
 
+![Desktop Screenshot](screenshot-desktop.png)
 ![App Screenshot](screenshot.png)
 
 ## 🎮 Controls & Shortcuts
